@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0a0a0d">
+  <title>CART3R — Remote Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="CART3R home">
+        <span class="brand-mark">C</span><span>CART3R<span class="brand-sub">REMOTE ADMIN</span></span>
+      </a>
+      <div class="server-card">
+        <div class="server-icon">✦</div>
+        <div><b>Survival Server</b><small><i class="dot demo"></i> DEMO MODE</small></div>
+        <span class="chevron">⌄</span>
+      </div>
+      <div class="nav-label">WORKSPACE</div>
+      <nav>
+        <button class="nav-link active" data-page="overview"><span>▦</span> Overview</button>
+        <button class="nav-link" data-page="console"><span>⌘</span> Console</button>
+        <button class="nav-link" data-page="players"><span>♙</span> Players</button>
+        <button class="nav-link" data-page="files"><span>▤</span> File manager</button>
+      </nav>
+      <div class="nav-label settings-label">SYSTEM</div>
+      <nav><button class="nav-link" data-page="settings"><span>⚙</span> Settings</button></nav>
+      <div class="sidebar-bottom">
+        <div class="secure"><span>◈</span><div><b>Secure connection</b><small>Not connected yet</small></div></div>
+        <div class="profile"><div class="avatar">A</div><div><b>Administrator</b><small>Local preview</small></div><span class="more">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+        <div class="crumb">Workspace <span>/</span> <b id="pageCrumb">Overview</b></div>
+        <div class="top-actions"><span class="demo-pill"><i class="dot demo"></i> PREVIEW</span><button class="icon-btn" title="Notifications">♧</button><div class="avatar small">A</div></div>
+      </header>
+
+      <section class="content">
+        <div class="page-heading">
+          <div><div class="eyebrow">CONTROL CENTER <span> / 01</span></div><h1 id="pageTitle">Server overview<span>.</span></h1><p id="pageDescription">Monitor your Minecraft server from one place.</p></div>
+          <div class="heading-actions"><span class="updated">● Demo data</span><button class="btn btn-primary" id="refreshBtn">↻ &nbsp; Refresh</button></div>
+        </div>
+
+        <div class="notice"><span class="notice-icon">!</span><div><b>Preview mode</b><p>This dashboard is not connected to your Minecraft server. Actions are simulated and no commands are sent.</p></div><span class="notice-tag">DEMO</span></div>
+
+        <section class="page-view" id="overviewPage">
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>SERVER STATUS</span><span class="stat-icon">◉</span></div><div class="stat-value"><i class="dot offline"></i> Offline</div><div class="stat-foot">Waiting for secure connection</div></article>
+            <article class="stat-card"><div class="stat-top"><span>PLAYERS ONLINE</span><span class="stat-icon">♙</span></div><div class="stat-value">0<span class="muted"> / 20</span></div><div class="stat-foot">No live player data</div></article>
+            <article class="stat-card"><div class="stat-top"><span>SERVER VERSION</span><span class="stat-icon">◇</span></div><div class="stat-value">1.21<span class="muted">+</span></div><div class="stat-foot">Paper / Spigot compatible target</div></article>
+            <article class="stat-card"><div class="stat-top"><span>UPTIME</span><span class="stat-icon">◷</span></div><div class="stat-value">—</div><div class="stat-foot">Available after connection</div></article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="panel performance"><div class="panel-heading"><div><h2>Resource usage</h2><p>Live server performance</p></div><span class="tag">NO DATA</span></div>
+              <div class="empty-chart"><div class="chart-lines"><span></span><span></span><span></span><span></span></div><div class="chart-center"><span class="chart-symbol">⌁</span><b>Waiting for server data</b><small>CPU and memory metrics will appear here.</small></div></div>
+              <div class="legend"><span><i class="legend-red"></i> CPU usage</span><span><i class="legend-gray"></i> Memory usage</span></div>
+            </article>
+            <article class="panel quick-actions"><div class="panel-heading"><div><h2>Quick actions</h2><p>Common server controls</p></div></div>
+              <button class="action-row" data-demo="Start server"><span class="action-icon">▶</span><span><b>Start server</b><small>Power on your server</small></span><em>›</em></button>
+              <button class="action-row" data-demo="Restart server"><span class="action-icon">↻</span><span><b>Restart server</b><small>Restart the Minecraft process</small></span><em>›</em></button>
+              <button class="action-row" data-demo="Stop server"><span class="action-icon">■</span><span><b>Stop server</b><small>Shut down gracefully</small></span><em>›</em></button>
+            </article>
+          </div>
+          <article class="panel activity"><div class="panel-heading"><div><h2>Recent activity</h2><p>Latest events from your server</p></div><span class="tag">DEMO</span></div><div class="activity-empty"><span>◷</span><div><b>No activity to show</b><small>Events will appear when the server is connected.</small></div></div></article>
+        </section>
+
+        <section class="page-view hidden" id="consolePage">
+          <article class="panel console-panel"><div class="panel-heading"><div><h2>Server console</h2><p>Send commands and inspect server output</p></div><span class="tag">SIMULATED</span></div>
+            <div class="terminal" id="terminal"><div class="terminal-bar"><span><i></i><i></i><i></i></span><small>cart3r@minecraft:~</small><b>DEMO</b></div><div class="terminal-body"><p class="muted-line">CART3R console preview v0.1</p><p class="muted-line">Connection: not configured</p><p class="muted-line">Commands entered here are not sent to your server.</p><div id="consoleOutput"></div></div></div>
+            <form class="command-form" id="commandForm"><span class="prompt">›</span><input id="commandInput" autocomplete="off" placeholder="Enter a demo command..." aria-label="Console command"><button class="btn btn-primary">Run demo</button></form>
+            <p class="hint">For safety, this preview does not execute real Minecraft commands.</p>
+          </article>
+        </section>
+
+        <section class="page-view hidden" id="playersPage">
+          <article class="panel"><div class="panel-heading"><div><h2>Player management</h2><p>Online players and moderation tools</p></div><span class="tag">0 ONLINE</span></div>
+            <div class="table-wrap"><table><thead><tr><th>PLAYER</th><th>STATUS</th><th>PLAY TIME</th><th>ACTIONS</th></tr></thead><tbody><tr><td colspan="4" class="table-empty">No players available — connect your server to load player data.</td></tr></tbody></table></div>
+          </article>
+        </section>
+
+        <section class="page-view hidden" id="filesPage">
+          <article class="panel"><div class="panel-heading"><div><h2>File manager</h2><p>Browse your Minecraft server files</p></div><span class="tag">READ-ONLY PREVIEW</span></div>
+            <div class="pathbar"><span>⌂</span> / <b>server</b></div>
+            <div class="file-list"><div class="file-row file-head"><span>NAME</span><span>TYPE</span><span>ACCESS</span></div><div class="file-row"><span>▰ &nbsp; plugins</span><span>Folder</span><span class="locked">Not connected</span></div><div class="file-row"><span>▰ &nbsp; world</span><span>Folder</span><span class="locked">Not connected</span></div><div class="file-row"><span>▰ &nbsp; logs</span><span>Folder</span><span class="locked">Not connected</span></div><div class="file-row"><span>▧ &nbsp; server.properties</span><span>File</span><span class="locked">Not connected</span></div><div class="file-row"><span>▧ &nbsp; eula.txt</span><span>File</span><span class="locked">Not connected</span></div></div>
+            <p class="hint">Example directory only. No server files are being read or modified.</p>
+          </article>
+        </section>
+
+        <section class="page-view hidden" id="settingsPage">
+          <article class="panel settings-panel"><div class="panel-heading"><div><h2>Connection settings</h2><p>Configure the secure link to your Minecraft plugin</p></div><span class="tag">NOT CONNECTED</span></div>
+            <div class="setting-block"><div><b>Connection status</b><small>The web panel has not been paired with your server.</small></div><span class="status-badge">Disconnected</span></div>
+            <div class="setting-block"><div><b>API endpoint</b><small>Configure a private backend bridge before adding an endpoint.</small></div><span class="locked">Not configured</span></div>
+            <div class="setting-block"><div><b>Authentication</b><small>Keep API credentials on a protected backend. Never place secret tokens in browser JavaScript.</small></div><span class="locked">Required</span></div>
+            <div class="security-note">Security recommendation: do not expose the plugin's localhost API directly to the public internet. Use an authenticated backend bridge and restrict file access to the server directory.</div>
+          </article>
+        </section>
+        <footer> <span class="footer-logo">CART3R</span> REMOTE ADMIN <span>VERSION 0.1.0 · WEB PREVIEW</span></footer>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
